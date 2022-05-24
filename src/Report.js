@@ -1,16 +1,17 @@
 import React, { Fragment } from "react";
 import { weatherData } from "./weatherData";
 import { useParams } from "react-router-dom";
+import Section from "./Section";
 
 const Report = () => {
   const { scale } = useParams();
   const data = weatherData(scale);
+  const headingText = `Your weather report in ${
+    scale.charAt(0).toUpperCase() + scale.slice(1)
+  }`;
 
   return (
-    <section>
-      <h1>
-        Your weather report in {scale.charAt(0).toUpperCase() + scale.slice(1)}
-      </h1>
+    <Section headingText={headingText}>
       <dl>
         {data.map(({ city, temp }) => {
           return (
@@ -21,7 +22,7 @@ const Report = () => {
           );
         })}
       </dl>
-    </section>
+    </Section>
   );
 };
 
